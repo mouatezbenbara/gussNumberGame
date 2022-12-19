@@ -4,10 +4,13 @@ let score = 20;
 let highScore = 0;
 let highScores = [];
 let trouve = false;
+const displayMessage = (msg) => {
+  document.querySelector(".message").textContent = msg;
+};
 document.querySelector(".btn").addEventListener("click", function () {
   const guess = Number(document.querySelector(".inpt").value);
   const reGuess = function (msg) {
-    document.querySelector(".message").textContent = msg;
+    displayMessage(msg);
     score--;
     document.querySelector(".score").textContent = score;
   };
@@ -19,11 +22,11 @@ document.querySelector(".btn").addEventListener("click", function () {
       // the case that he found it
       // if the score was 0 that means you Lose the game
       if (score === 0) {
-        document.querySelector(".message").textContent = "Game Over !";
+        displayMessage("Game Over !");
       } else {
         if (realNumber == guess) {
           // When the player Wins
-          document.querySelector(".message").textContent = "🥳 Correct Number";
+          displayMessage("🥳 Correct Number");
           // to exit the game
           trouve = true;
           // To show the number in the middle container
@@ -47,10 +50,9 @@ document.querySelector(".btn").addEventListener("click", function () {
     }
     // Cases For not entering a valid number
     else if (!guess) {
-      document.querySelector(".message").textContent = "🛑 No Number";
+      displayMessage("🛑 No Number");
     } else {
-      document.querySelector(".message").textContent =
-        "🔻Renter a valid Number ";
+      displayMessage("🔻Renter a valid Number ");
     }
   }
 });
@@ -62,7 +64,7 @@ document.querySelector(".again").addEventListener("click", function () {
   trouve = false;
   document.body.style.backgroundColor = "#333";
   document.querySelector(".inpt").value = " ";
-  document.querySelector(".message").textContent = "Start Guessing...";
+  displayMessage("Start Guessing...");
   document.querySelector(".number").textContent = "?";
   document.querySelector(".score").textContent = 20;
 });

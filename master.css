@@ -46,18 +46,6 @@ h1 {
     width:fit-content;
     margin: auto;
  }
- /*
-.exlacmation::before{
-    content: "";
-    width: 100vw;
-    height: 10px;
-    position: absolute;
-    top: 50%;
-    left:-10px;
-    background-color: #FFF;
-    z-index: -1;
-} */
-
 .sides {
     padding: 60px 0;
     height: 200px;
@@ -100,7 +88,9 @@ h1 {
 .score{
     transition: 1s;
 }
-
+button, input {
+    font-family: 'Press Start 2P', cursive;
+}
 @media (max-width: 779px)  {
     body{
         overflow: scroll;

@@ -6,7 +6,11 @@ let highScores = [];
 let trouve = false;
 document.querySelector(".btn").addEventListener("click", function () {
   const guess = Number(document.querySelector(".inpt").value);
-
+  const reGuess = function (msg) {
+    document.querySelector(".message").textContent = msg;
+    score--;
+    document.querySelector(".score").textContent = score;
+  };
   // here we test if the user found the number or not yet
   if (!trouve) {
     // we Test if the user enter Data and if its valid we go inside the if statement
@@ -34,14 +38,10 @@ document.querySelector(".btn").addEventListener("click", function () {
           document.querySelector(".score").textContent = score;
         } else if (realNumber > guess) {
           // Guess is too low
-          document.querySelector(".message").textContent = "TOO LOW";
-          score--;
-          document.querySelector(".score").textContent = score;
+          reGuess("↙️ TOO LOW !");
         } else {
           // Guess is too high
-          document.querySelector(".message").textContent = "TOO HIGH";
-          score--;
-          document.querySelector(".score").textContent = score;
+          reGuess("↗️ TOO HIGH ! ");
         }
       }
     }
@@ -54,6 +54,7 @@ document.querySelector(".btn").addEventListener("click", function () {
     }
   }
 });
+
 // again function when we click
 document.querySelector(".again").addEventListener("click", function () {
   realNumber = Math.floor(Math.random() * 20) + 1;

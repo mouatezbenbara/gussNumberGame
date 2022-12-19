@@ -1,11 +1,13 @@
 "use strict";
-const realNumber = Math.floor(Math.random() * 20) + 1;
+let realNumber = Math.floor(Math.random() * 20) + 1;
 let score = 20;
 let highScore = 0;
+let highScores = [];
 let trouve = false;
 document.querySelector(".btn").addEventListener("click", function () {
   const guess = Number(document.querySelector(".inpt").value);
-  // here we test if the user found the number by
+
+  // here we test if the user found the number or not yet
   if (!trouve) {
     // we Test if the user enter Data and if its valid we go inside the if statement
     if (guess && guess > 0 && guess < 21) {
@@ -25,8 +27,10 @@ document.querySelector(".btn").addEventListener("click", function () {
           // background color changed to green
           document.body.style.backgroundColor = "rgb(56, 181, 37)";
           document.querySelector(".number").style.width = "100px";
-          // Show the score and save it in highscore
-          document.querySelector(".highscore").textContent = score;
+          if (score > highScore) {
+            highScore = score;
+            document.querySelector(".highscore").textContent = highScore;
+          }
           document.querySelector(".score").textContent = score;
         } else if (realNumber > guess) {
           // Guess is too low
@@ -50,11 +54,9 @@ document.querySelector(".btn").addEventListener("click", function () {
     }
   }
 });
-console.log("score : ", score);
-console.log("high Score: ", highScore);
 // again function when we click
 document.querySelector(".again").addEventListener("click", function () {
-  const realNumber = Math.floor(Math.random() * 20) + 1;
+  realNumber = Math.floor(Math.random() * 20) + 1;
   score = 20;
   trouve = false;
   document.body.style.backgroundColor = "#333";
@@ -62,5 +64,4 @@ document.querySelector(".again").addEventListener("click", function () {
   document.querySelector(".message").textContent = "Start Guessing...";
   document.querySelector(".number").textContent = "?";
   document.querySelector(".score").textContent = 20;
-  document.querySelector(".highscore").textContent = highScore;
 });
